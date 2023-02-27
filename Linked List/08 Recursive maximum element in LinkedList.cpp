@@ -27,27 +27,31 @@ void create(int A[], int n)
     }
 };
 
-int maximum(struct Node *p)
+int RecursiveMinimum(struct Node *p)
 {
-    int max = INT32_MIN;
-
-    while (p)
+    int x = 0;
+    if (p == 0)
     {
-        if (p->data > max)
-        {
-            max = p->data;
-        }
-        p = p->next;
+        return INT32_MAX;
     }
 
-    return max;
+    x = RecursiveMinimum(p->next);
+
+    if (x > p->data)
+    {
+        return x;
+    }
+    else
+    {
+        return p->data;
+    }
 }
 
 int main(void)
 {
     int A[] = {2, 78, 3, 67, 4};
     create(A, 5);
-    cout << maximum(first);
+    cout << RecursiveMinimum(first);
 
     return 0;
 }
