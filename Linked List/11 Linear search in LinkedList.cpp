@@ -27,7 +27,7 @@ void create(int A[], int n)
     }
 };
 
-struct Node *RecursiveSearch(struct Node *p, int key)
+struct Node *LinearSearch(struct Node *p, int key)
 {
     struct Node *q;
 
@@ -53,7 +53,7 @@ int main(void)
     int A[] = {3, 5, 7, 10, 25, 8, 32, 2};
     create(A, 8);
 
-    temp = RecursiveSearch(first, 25);
+    temp = LinearSearch(first, 25);
     cout << temp->data;
 
     return 0;
