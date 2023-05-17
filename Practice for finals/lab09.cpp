@@ -1,3 +1,5 @@
+// Array-based Implementation of Two-way Stack ADT
+
 #include <iostream>
 using namespace std;
 

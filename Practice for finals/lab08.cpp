@@ -1,3 +1,5 @@
+// Array-based Implementation of Stack ADT
+
 #include <iostream>
 using namespace std;
 
@@ -97,7 +99,7 @@ int main()
     st.push(90);
 
     st.pop();
-    
+
     st.display();
 
     return 0;

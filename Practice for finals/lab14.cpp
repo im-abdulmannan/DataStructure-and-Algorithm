@@ -1,3 +1,5 @@
+// Linked List Based Implementation of Queue ADT
+
 #include <iostream>
 
 class Node

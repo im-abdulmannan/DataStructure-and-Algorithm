@@ -1,3 +1,5 @@
+// Array-based Implementation of Drifting Queue
+
 #include <iostream>
 using namespace std;
 
@@ -37,7 +39,7 @@ public:
         {
             front = rear = 0;
         }
-        else if(rear == MAX_SIZE - 1 && front != 0)
+        else if (rear == MAX_SIZE - 1 && front != 0)
         {
             rear = 0;
         }
@@ -85,9 +87,9 @@ public:
             cout << "Queue is Empty" << endl;
             return;
         }
-        
+
         int i = front;
-        while(i != rear)
+        while (i != rear)
         {
             cout << arr[i] << " ";
             i = (i + 1) % MAX_SIZE;

@@ -1,3 +1,5 @@
+// Linked List Based Implementation of Stack ADT
+
 #include <iostream>
 
 class Node
