@@ -44,10 +44,20 @@ public:
             return;
         }
         Node *temp = front;
+        cout << temp->data << " dequeued from queue" << endl;
         front = front->next;
         if (front == nullptr)
             rear = nullptr;
         delete temp;
+    }
+
+    Node *peek() {
+        if(isEmpty()) {
+            cout << "Queue is empty" << endl;
+            return nullptr;
+        }
+
+        return front;
     }
 };
 
@@ -60,5 +70,11 @@ int main()
     q.dequeue();
     q.dequeue();
     q.dequeue();
+
+    // cout << q.peek()->data << endl;
+
+    q.enqueue(40);
+    q.enqueue(50);
+    cout << q.peek()->data << endl;
     return 0;
 }
