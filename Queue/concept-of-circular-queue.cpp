@@ -1,35 +1,28 @@
 #include <iostream>
 using namespace std;
 
-class Queue
+class CircularQueue
 {
 private:
     int *arr;
-    int front, rear;
+    int front;
+    int rear;
     int size;
 
 public:
-    Queue(int _size)
+    CircularQueue(int _size)
     {
         arr = new int[_size];
+        size = _size;
         front = -1;
         rear = -1;
-        size = _size;
     }
-
     /** isFull()
      * @return true if the queue is full
      */
     bool isFull()
     {
-        if (rear == size - 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return (rear + 1) % size == front;
     }
 
     /** isEmpty
@@ -37,18 +30,11 @@ public:
      */
     bool isEmpty()
     {
-        if (front == -1 && rear == -1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return front == -1 && rear == -1;
     }
 
     /** Enqueue
-     * @param data to input data into the queue at rear position
+     * @return data {to input data into the queue at rear position}
      */
     void Enqueue(int data)
     {
@@ -64,21 +50,20 @@ public:
         }
         else
         {
-            rear++;
+            rear = (rear + 1) % size;
         }
         arr[rear] = data;
         cout << "Enqueued " << arr[rear] << endl;
     }
 
     /** Dequeue
-     * @return it returns the data which is being removed from the queue
+     * @return it removes the data at the front from the queue
      */
-    int dequeue()
+    void dequeue()
     {
         if (isEmpty())
         {
             cout << "Queue is empty!" << endl;
-            return -1;
         }
         int temp = arr[front];
         if (front == rear)
@@ -88,11 +73,10 @@ public:
         }
         else
         {
-            front++;
+            front = (front + 1) % size;
         }
 
         cout << "Dequeueing..." << temp << endl;
-        return temp;
     }
 
     /** peek
@@ -111,16 +95,18 @@ public:
 
 int main()
 {
-    Queue q(5);
-    q.Enqueue(2);
-    q.Enqueue(3);
-    q.Enqueue(4);
-    q.Enqueue(6);
-    q.Enqueue(9);
-    q.Enqueue(10);
-    q.Enqueue(15);
-    cout << q.peek() << endl;
-    q.dequeue();
-    cout << q.peek() << endl;
+    CircularQueue cq(5);
+    cq.Enqueue(2);
+    cq.Enqueue(3);
+    cq.Enqueue(4);
+    cq.Enqueue(6);
+    cq.Enqueue(9);
+    cq.Enqueue(10);
+    cq.Enqueue(15);
+    cout << cq.peek() << endl;
+    cq.Enqueue(10);
+    cq.dequeue();
+    cq.Enqueue(15);
+    cout << cq.peek() << endl;
     return 0;
 }
