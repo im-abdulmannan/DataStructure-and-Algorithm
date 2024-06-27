@@ -1,35 +1,31 @@
 #include <iostream>
 using namespace std;
 
-class Solution
+class Queue
 {
 private:
-    int arr[10];
-    int front = -1, rear = -1;
+    int *arr;
+    int size;
+    int front;
+    int rear;
 
 public:
+    Queue(int _size)
+    {
+        arr = new int[_size];
+        front = -1;
+        rear = -1;
+        size = _size;
+    }
+
     bool isEmpty()
     {
-        if (front == -1 || rear == -1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return front == -1 && rear == -1;
     }
 
     bool isFull()
     {
-        if (rear == 9)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return rear == size - 1;
     }
 
     void enqueue(int n)
@@ -51,15 +47,13 @@ public:
         arr[rear] = n;
     }
 
-    int dequeue()
+    void dequeue()
     {
         if (isEmpty())
         {
             cout << "Queue is empty" << endl;
-            return -1;
         }
 
-        int temp = arr[front];
         if (front == rear)
         {
             front = -1;
@@ -69,8 +63,6 @@ public:
         {
             front++;
         }
-        cout << "Dequeueing " << temp << " from queue." << endl;
-        return temp;
     }
 
     int peek()
@@ -80,47 +72,35 @@ public:
             cout << "Queue is empty" << endl;
             return -1;
         }
-        else if (front == rear)
-        {
-            return arr[front];
-        }
-        else
-        {
-            return arr[front + 1];
-        }
+        return arr[front];
     }
 };
 
 int main()
 {
-    Solution s;
-    s.enqueue(1);
-    s.enqueue(9);
-    s.enqueue(9);
-    s.enqueue(9);
-    s.enqueue(9);
-    s.enqueue(9);
-    s.enqueue(9);
-    s.enqueue(9);
-    s.enqueue(2);
-    s.enqueue(5);
-    s.enqueue(5);
-    s.enqueue(5);
-    s.enqueue(5);
-    s.enqueue(5);
+    Queue q(10);
+    q.enqueue(1);
+    cout << q.peek() << endl;
+    q.enqueue(9);
+    q.enqueue(7);
+    q.enqueue(2);
+    q.enqueue(3);
+    q.enqueue(1);
+    q.enqueue(2);
+    q.enqueue(3);
 
-    s.dequeue();
-    s.peek();
+    q.dequeue();
+    q.peek();
 
-    while (!s.isEmpty())
+    while (!q.isEmpty())
     {
-        cout << s.peek() << endl;
-        s.dequeue();
+        cout << q.peek() << endl;
+        q.dequeue();
     }
 
-    s.peek();
+    q.peek();
 
-    s.dequeue();
+    q.dequeue();
 
     return 0;
 }
